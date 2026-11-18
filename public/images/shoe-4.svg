@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%" fill="none">
+  <rect width="600" height="450" rx="16" fill="#F8FAFC" />
+  <circle cx="300" cy="225" r="140" fill="#475569" fill-opacity="0.08" />
+  <ellipse cx="300" cy="360" rx="180" ry="20" fill="#0F172A" fill-opacity="0.08" />
+  <g transform="translate(70, 75)">
+    <!-- Cloud Foam Sole -->
+    <path d="M 50 240 C 130 248, 240 248, 340 230 C 405 210, 425 185, 410 175 C 330 190, 220 205, 120 210 C 60 212, 40 225, 50 240 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+    <path d="M 120 230 Q 180 235 240 230" stroke="#94A3B8" stroke-width="2" />
+    <!-- Seamless Charcoal Knit Upper -->
+    <path d="M 60 210 C 75 160, 120 120, 165 105 C 190 98, 225 125, 255 140 C 300 160, 360 170, 400 175 C 340 188, 230 198, 120 205 C 75 208, 65 208, 60 210 Z" fill="#334155" />
+    <!-- Elastic Collar & Pull Tab -->
+    <path d="M 155 108 C 175 100, 200 105, 215 120" stroke="#F97316" stroke-width="3" stroke-linecap="round" />
+    <rect x="135" y="105" width="12" height="24" rx="4" fill="#F97316" transform="rotate(-20 135 105)" />
+    <!-- Micro Texture Dots -->
+    <circle cx="280" cy="165" r="1.5" fill="#64748B" />
+    <circle cx="295" cy="168" r="1.5" fill="#64748B" />
+    <circle cx="310" cy="170" r="1.5" fill="#64748B" />
+    <circle cx="325" cy="172" r="1.5" fill="#64748B" />
+  </g>
+  <text x="540" y="50" text-anchor="end" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12">DAILY / SLIP-ON</text>
+</svg>

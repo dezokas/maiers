@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%" fill="none">
+  <rect width="600" height="450" rx="16" fill="#F8FAFC" />
+  <circle cx="300" cy="225" r="140" fill="#92400E" fill-opacity="0.08" />
+  <ellipse cx="300" cy="360" rx="180" ry="20" fill="#0F172A" fill-opacity="0.08" />
+  <g transform="translate(70, 75)">
+    <!-- Low Heel Leather Sole -->
+    <path d="M 45 235 L 85 235 L 85 220 L 150 220 C 230 220, 330 210, 420 185 C 430 180, 420 168, 400 170 C 320 180, 200 195, 120 198 C 60 200, 40 215, 45 235 Z" fill="#451A03" stroke="#78350F" stroke-width="1.5" />
+    <!-- Polished Leather Upper -->
+    <path d="M 60 200 C 70 150, 110 115, 160 100 C 190 90, 215 110, 235 125 C 275 145, 345 158, 400 170 C 340 180, 230 190, 110 195 C 75 195, 65 198, 60 200 Z" fill="#78350F" />
+    <path d="M 120 105 C 150 95, 180 95, 210 110 L 230 140 C 190 145, 150 140, 120 120 Z" fill="#9A3412" />
+    <!-- Brogue Punching Details -->
+    <circle cx="330" cy="165" r="2" fill="#B45309" />
+    <circle cx="340" cy="167" r="2" fill="#B45309" />
+    <circle cx="350" cy="170" r="2" fill="#B45309" />
+    <!-- Waxed Thin Laces -->
+    <g stroke="#3E1A00" stroke-width="2" stroke-linecap="round">
+      <line x1="180" y1="108" x2="205" y2="118" />
+      <line x1="190" y1="118" x2="215" y2="128" />
+      <line x1="200" y1="128" x2="225" y2="138" />
+    </g>
+  </g>
+  <text x="540" y="50" text-anchor="end" fill="#92400E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12">FORMAL / LEATHER</text>
+</svg>

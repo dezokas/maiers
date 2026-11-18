@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF7ED" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+    <linearGradient id="soleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <linearGradient id="upperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FB923C" />
+      <stop offset="100%" stop-color="#EA580C" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="25" stdDeviation="30" flood-color="#0F172A" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" rx="24" fill="url(#bgGlow)" />
+  
+  <!-- Subtle Grid Pattern & Brand Mark in Background -->
+  <circle cx="400" cy="280" r="190" fill="#EA580C" fill-opacity="0.06" />
+  <circle cx="400" cy="280" r="130" stroke="#EA580C" stroke-opacity="0.08" stroke-width="2" stroke-dasharray="6 6" />
+
+  <!-- Shoe Floating Shadow -->
+  <ellipse cx="400" cy="480" rx="260" ry="32" fill="#0F172A" fill-opacity="0.12" filter="blur(16px)" />
+
+  <!-- Main Hero Sneaker Graphics (Dynamic Angle) -->
+  <g filter="url(#shadow)" transform="translate(110, 140) rotate(-6 300 200)">
+    <!-- Outsole & Midsole -->
+    <path d="M 60 330 C 130 335, 230 340, 340 335 C 440 330, 520 290, 550 250 C 560 235, 545 220, 520 225 C 440 240, 320 270, 190 275 C 110 278, 65 290, 45 305 C 38 312, 45 328, 60 330 Z" fill="url(#soleGrad)" stroke="#CBD5E1" stroke-width="2" />
+    <!-- Air Cushion Window -->
+    <rect x="130" y="295" width="85" height="18" rx="9" fill="#F97316" fill-opacity="0.85" />
+    <line x1="150" y1="295" x2="150" y2="313" stroke="#FFFFFF" stroke-width="2" opacity="0.8" />
+    <line x1="170" y1="295" x2="170" y2="313" stroke="#FFFFFF" stroke-width="2" opacity="0.8" />
+    <line x1="190" y1="295" x2="190" y2="313" stroke="#FFFFFF" stroke-width="2" opacity="0.8" />
+
+    <!-- Sneaker Upper Body -->
+    <path d="M 75 295 C 100 240, 150 160, 210 120 C 235 105, 275 130, 290 155 C 330 180, 420 205, 510 215 C 530 218, 540 230, 520 235 C 430 255, 300 268, 160 280 C 115 284, 85 290, 75 295 Z" fill="url(#upperGrad)" />
+    
+    <!-- Breathable Mesh Texture & Overlay Paneling -->
+    <path d="M 330 185 C 380 200, 440 215, 495 220 C 475 235, 410 245, 335 240 C 310 238, 305 210, 330 185 Z" fill="#334155" />
+    
+    <!-- Dynamic Myers Swoop / Stripe Accent -->
+    <path d="M 195 245 C 260 215, 350 195, 445 220 C 420 238, 320 255, 235 260 Z" fill="url(#accentOrange)" />
+
+    <!-- Heel Collar & Cushion -->
+    <path d="M 170 145 C 190 125, 215 110, 235 115 C 245 120, 240 145, 220 165 C 200 185, 175 190, 170 145 Z" fill="#F97316" />
+
+    <!-- Lacing System & Eyelets -->
+    <g stroke="#F8FAFC" stroke-width="3.5" stroke-linecap="round">
+      <line x1="240" y1="135" x2="275" y2="155" />
+      <line x1="260" y1="150" x2="295" y2="170" />
+      <line x1="280" y1="165" x2="315" y2="185" />
+      <line x1="300" y1="180" x2="335" y2="200" />
+    </g>
+
+    <!-- Myers Typography Detail on Heel -->
+    <text x="110" y="270" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" letter-spacing="1" fill="#94A3B8">MYERS LAB-01</text>
+  </g>
+</svg>

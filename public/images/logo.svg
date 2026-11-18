@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="100%" height="100%" fill="none">
+  <!-- Dynamic Monogram Mark -->
+  <g transform="translate(4, 6)">
+    <!-- Shield / Dynamic Stride Base -->
+    <rect width="48" height="48" rx="14" fill="#0F172A" />
+    <!-- Gradient Winged M -->
+    <defs>
+      <linearGradient id="myersGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F97316" />
+        <stop offset="100%" stop-color="#EA580C" />
+      </linearGradient>
+      <linearGradient id="myersGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FED7AA" />
+        <stop offset="100%" stop-color="#F97316" />
+      </linearGradient>
+    </defs>
+    <!-- Geometric M Wing Path -->
+    <path d="M12 36 L12 21 L20 30 L24 25 L28 30 L36 21 L36 36" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Dynamic Speed Accent -->
+    <path d="M16 16 L32 16" stroke="url(#myersGrad)" stroke-width="3" stroke-linecap="round" />
+    <circle cx="36" cy="16" r="2.5" fill="#F97316" />
+  </g>
+  <!-- Brand Typography -->
+  <text x="64" y="35" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="24" letter-spacing="2.5" fill="#0F172A">MYERS</text>
+  <text x="65" y="48" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="600" font-size="9" letter-spacing="3.5" fill="#F97316">FOOTWEAR CO.</text>
+</svg>

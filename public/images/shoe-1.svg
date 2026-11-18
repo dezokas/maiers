@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%" fill="none">
+  <rect width="600" height="450" rx="16" fill="#F8FAFC" />
+  <circle cx="300" cy="225" r="140" fill="#EA580C" fill-opacity="0.08" />
+  <ellipse cx="300" cy="360" rx="180" ry="20" fill="#0F172A" fill-opacity="0.08" />
+  <g transform="translate(70, 70)">
+    <!-- Sole -->
+    <path d="M 50 250 C 120 255, 230 255, 330 230 C 400 205, 430 180, 410 170 C 340 185, 220 205, 120 210 C 60 212, 40 230, 50 250 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" />
+    <rect x="110" y="225" width="60" height="12" rx="6" fill="#F97316" />
+    <!-- Upper Body -->
+    <path d="M 60 220 C 80 160, 130 110, 180 85 C 205 75, 230 100, 245 120 C 280 140, 350 160, 400 170 C 350 185, 240 195, 120 205 C 75 208, 65 215, 60 220 Z" fill="#0F172A" />
+    <!-- Orange Dynamic Stripe -->
+    <path d="M 160 170 C 220 150, 280 145, 350 165 C 330 175, 260 185, 190 185 Z" fill="#F97316" />
+    <!-- Laces -->
+    <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round">
+      <line x1="200" y1="100" x2="225" y2="115" />
+      <line x1="215" y1="112" x2="240" y2="127" />
+      <line x1="230" y1="125" x2="255" y2="140" />
+    </g>
+  </g>
+  <text x="540" y="50" text-anchor="end" fill="#94A3B8" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12">RUNNING / SPORT</text>
+</svg>
