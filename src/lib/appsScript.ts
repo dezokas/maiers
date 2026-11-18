@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import os from "os";
 
 export interface AppsScriptPayload {
   action: "list" | "get" | "create" | "update" | "delete";
@@ -17,12 +18,17 @@ export interface AppsScriptResponse<T = unknown> {
   timestamp: string;
 }
 
-const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL || "";
-const APPS_SCRIPT_SECRET = process.env.APPS_SCRIPT_SECRET || "myers-secret-token-change-in-production";
+// Helper direktori data yang aman untuk Vercel (read-only filesystem) maupun lokal
+function getDataDir(): string {
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    return path.join(os.tmpdir(), "myers-data");
+  }
+  return path.join(process.cwd(), ".data");
+}
 
-// Local fallback store path (untuk development lokal saat Apps Script belum di-deploy oleh pengguna)
-const DATA_DIR = path.join(process.cwd(), ".data");
-const LOCAL_DB_PATH = path.join(DATA_DIR, "database.json");
+function getDbPath(): string {
+  return path.join(getDataDir(), "database.json");
+}
 
 interface LocalDatabase {
   Roles: Array<Record<string, unknown>>;
@@ -30,6 +36,8 @@ interface LocalDatabase {
   Catalog: Array<Record<string, unknown>>;
   Orders: Array<Record<string, unknown>>;
 }
+
+let memoryDb: LocalDatabase | null = null;
 
 function getInitialLocalDb(): LocalDatabase {
   const now = new Date().toISOString();
@@ -168,29 +176,46 @@ function getInitialLocalDb(): LocalDatabase {
 }
 
 function readLocalDb(): LocalDatabase {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (memoryDb) {
+    return memoryDb;
   }
-  if (!fs.existsSync(LOCAL_DB_PATH)) {
-    const init = getInitialLocalDb();
-    fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(init, null, 2));
-    return init;
-  }
+  const dataDir = getDataDir();
+  const dbPath = getDbPath();
+
   try {
-    const raw = fs.readFileSync(LOCAL_DB_PATH, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    const init = getInitialLocalDb();
-    fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(init, null, 2));
-    return init;
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    if (fs.existsSync(dbPath)) {
+      const raw = fs.readFileSync(dbPath, "utf-8");
+      memoryDb = JSON.parse(raw);
+      return memoryDb!;
+    }
+  } catch (err) {
+    console.warn("[LocalDB] Filesystem tidak dapat diakses secara langsung, menggunakan in-memory:", err);
   }
+
+  memoryDb = getInitialLocalDb();
+  try {
+    fs.writeFileSync(dbPath, JSON.stringify(memoryDb, null, 2));
+  } catch {
+    // Abaikan jika filesystem read-only (misal Vercel Lambda)
+  }
+  return memoryDb;
 }
 
 function writeLocalDb(db: LocalDatabase) {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+  memoryDb = db;
+  try {
+    const dataDir = getDataDir();
+    const dbPath = getDbPath();
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+  } catch (err) {
+    console.warn("[LocalDB] Filesystem read-only, pembaruan disimpan di memory runtime:", err);
   }
-  fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(db, null, 2));
 }
 
 /**
@@ -199,19 +224,23 @@ function writeLocalDb(db: LocalDatabase) {
 export async function queryAppsScript<T = unknown>(
   payload: AppsScriptPayload
 ): Promise<AppsScriptResponse<T>> {
+  const scriptUrl = process.env.APPS_SCRIPT_URL || "";
+  const scriptSecret = process.env.APPS_SCRIPT_SECRET || "myers-secret-token-change-in-production";
+
   // Jika URL Apps Script sudah diatur, panggil Google Apps Script Web App
   if (
-    APPS_SCRIPT_URL &&
-    APPS_SCRIPT_URL.startsWith("https://script.google.com/")
+    scriptUrl &&
+    scriptUrl.startsWith("https://script.google.com/")
   ) {
     try {
-      const response = await fetch(APPS_SCRIPT_URL, {
+      const response = await fetch(scriptUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...payload,
-          token: APPS_SCRIPT_SECRET,
+          token: scriptSecret,
         }),
+        redirect: "follow",
       });
 
       if (response.ok) {
@@ -224,12 +253,12 @@ export async function queryAppsScript<T = unknown>(
         }
       }
       console.warn(
-        `[AppsScript] Remote Web App returned HTTP ${response.status}. Menggunakan fallback database lokal sementara.`
+        `[AppsScript] Remote Web App returned HTTP ${response.status}. Menggunakan fallback database sementara.`
       );
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       console.warn(
-        `[AppsScript] Koneksi ke Google gagal (${msg}). Menggunakan fallback database lokal.`
+        `[AppsScript] Koneksi ke Google gagal (${msg}). Menggunakan fallback database.`
       );
     }
   }

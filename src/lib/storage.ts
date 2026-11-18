@@ -3,9 +3,13 @@ import path from "path";
 
 const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
 
-// Pastikan folder public/uploads selalu ada
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+// Pastikan folder public/uploads selalu ada (abaikan jika di lingkungan serverless read-only)
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+} catch {
+  // Abaikan di lingkungan Vercel Lambda / read-only filesystem
 }
 
 export interface SaveFileResult {

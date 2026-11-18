@@ -6,6 +6,12 @@ Dokumen ini mencatat riwayat pemeliharaan, daftar bug yang diketahui, serta road
 
 ## 1. Riwayat Perubahan (Changelog)
 
+### v1.0.1 (18 November 2026) - Vercel Serverless Compatibility Fix
+- **Fix Read-Only Filesystem di Vercel (`ENOENT: mkdir /var/task/.data`)**:
+  - Memperbarui `src/lib/appsScript.ts` dengan penanganan direktori aman menggunakan `os.tmpdir()` (`/tmp`) dan lapisan *in-memory fallback database*.
+  - Mengamankan pemanggilan pembuatan folder di `src/lib/storage.ts` dari *error crash* filesystem *read-only*.
+  - Menambahkan penanganan otomatis pengalihan (`redirect: 'follow'`) pada endpoint Apps Script.
+
 ### v1.0.0 (18 November 2026) - Rilis Awal Kesiapan Produksi
 - **Landing Page**:
   - Hero Section dengan CTA dinamis, badge promo diskon 30%, rating ulasan, dan foto produk sepatu nyata.
